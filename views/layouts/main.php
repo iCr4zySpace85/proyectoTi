@@ -32,18 +32,59 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <header id="header">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'AIDANA',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+
+            Yii::$app->user->isGuest 
+                ? ['label' => 'Inicio', 'url' => ['/site/index']]
+           
+                :(
+                    Yii::$app->user->identity->perfil_id == 2
+                        ?['label' => 'Inicio', 'url' => ['/site/index']]
+                        :['label' => 'Inicio', 'url' => ['/site/index']]
+                ),
+
+            Yii::$app->user->isGuest 
+                ? ['label' => 'Contactos', 'url' => ['/site/contact']]
+           
+                :(
+                    Yii::$app->user->identity->perfil_id == 2
+                        ?['label' => 'Usuarios', 'url' => ['/usuario/index']]
+                        :['label' => '', 'url' => ['/entradas/index']]
+                ),
+           
+            Yii::$app->user->isGuest 
+                ? ['label' => '', 'url' => ['/usuario/create']]
+           
+                :(
+                    Yii::$app->user->identity->perfil_id == 2
+                        ?['label' => 'Perfiles', 'url' => ['/perfil/index']]
+                        :['label' => '', 'url' => ['/site/contact']]
+                ),
+            Yii::$app->user->isGuest 
+                ? ['label' => '', 'url' => ['/site/index']]
+           
+                :(
+                    Yii::$app->user->identity->perfil_id == 2
+                        ?['label' => 'Contactos', 'url' => ['/site/contact']]
+                        :['label' => '', 'url' => ['/site/index']]
+                ),
+
+           
+                /*['label' => 'Inicio', 'url' => ['/site/index']],
+                ['label' => 'Contactos', 'url' => ['/site/contact']],
+                ['label' => 'Alertas', 'url' => ['/movimiento/index']],
+                ['label' => 'Login', 'url' => ['/login/index']],
+                ['label' => 'Usuarios', 'url' => ['/usuario/index']],
+                ['label' => 'Registrate', 'url' => ['/usuario/create']],*/
+
             Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
+                ? ['label' => 'Iniciar Sesión', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
