@@ -37,7 +37,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
 
             Yii::$app->user->isGuest 
@@ -63,9 +63,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
            
                 :(
                     Yii::$app->user->identity->perfil_id == 2
-                        ?['label' => 'Perfiles', 'url' => ['/perfil/index']]
+                        ?['label' => 'Entradas', 'url' => ['/entradas/index']]
                         :['label' => '', 'url' => ['/site/contact']]
                 ),
+//eventos+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+!Yii::$app->user->isGuest && Yii::$app->user->identity->perfil_id == 1
+? (['label' => 'Registros', 'url' => ['EntradasSearch[usuario_id]' => Yii::$app->user->identity->id,'/entradas/index']]
+) : (''),
+
+//*************************************************************************** */
             Yii::$app->user->isGuest 
                 ? ['label' => '', 'url' => ['/site/index']]
            
@@ -76,20 +84,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 ),
 
            
-                /*['label' => 'Inicio', 'url' => ['/site/index']],
-                ['label' => 'Contactos', 'url' => ['/site/contact']],
-                ['label' => 'Alertas', 'url' => ['/movimiento/index']],
-                ['label' => 'Login', 'url' => ['/login/index']],
-                ['label' => 'Usuarios', 'url' => ['/usuario/index']],
-                ['label' => 'Registrate', 'url' => ['/usuario/create']],*/
-
+       
             Yii::$app->user->isGuest
-                ? ['label' => 'Iniciar Sesión', 'url' => ['/site/login']]
+                ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
+                        ['class' => ' btn btn-link logout']
                     )
                     . Html::endForm()
                     . '</li>'
@@ -109,7 +111,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     </div>
 </main>
 
-<footer id="footer" class="mt-auto py-3 bg-light">
+<footer id="footer" class="mt-auto py-3 bg-dark">
     <div class="container">
         <div class="row text-muted">
             <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>

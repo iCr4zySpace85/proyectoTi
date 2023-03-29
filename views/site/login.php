@@ -7,43 +7,65 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = 'Login';
+
+$this->title = 'Iniciar Sesión';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<style>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n{input}\n{error}",
-            'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-            'inputOptions' => ['class' => 'col-lg-3 form-control'],
-            'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-        ],
-    ]); ?>
+    dody{
+        background-color: #E8ECF2;
+    }
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+    .img{
+        background-image: url('../img/global.jpg');
+        background-position: center ;
+        background-size: cover;
+    }
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+</style>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"offset-lg-1 col-lg-3 custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+<div class="site-login container w-75 mt-3 rounded shadow-lg ">
+    <div class="row align-items-stretch">
 
-        <div class="form-group">
-            <div class="offset-lg-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+        <div class="col p-5">
+            
+            <div class="text-center"> 
+                <img src="../img/logo.png" width="70" alt="" srcset="">
             </div>
+            
+            <h1 class="fw-bold text-center"><?= Html::encode($this->title) ?></h1>
+            
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'layout' => 'horizontal',
+                'fieldConfig' => [
+                    'template' => "{label}\n{input}\n{error}",
+                    'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3 text-center'],
+                    'inputOptions' => ['class' => 'col-lg-3 form-control m-0 text-center'],
+                    'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
+                ],
+            ]); ?>
+
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => "Nombre de usuario", ]) ?>
+
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => "Contraseña"])?>
+
+                <div class="form-group ">
+                    <div class="text-center">
+                        <?= Html::submitButton('Iniciar', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    </div>
+                </div>
+
+            <?php ActiveForm::end(); ?>
+
+            <p class="text-center my-3"><?= Html::a('¿Olvidaste tu contraseña?', ['/usuario/create'], ['class' => 'profile-link']) ?></p>
         </div>
 
-    <?php ActiveForm::end(); ?>
 
-    <div class="offset-lg-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+        <div class="col img d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
+
     </div>
+    
 </div>
