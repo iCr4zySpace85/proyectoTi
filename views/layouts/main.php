@@ -21,20 +21,21 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
+<script src="https://kit.fontawesome.com/a85adf3762.js" crossorigin="anonymous"></script>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 ">
 <?php $this->beginBody() ?>
 
 <header id="header">
     <?php
     NavBar::begin([
-        'brandLabel' => 'AIDANA',
+        'brandLabel' => 'IDANA',
         'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
+        'options' => ['class' => 'navbar navbar-expand-lg navbar-light ']
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -63,7 +64,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
            
                 :(
                     Yii::$app->user->identity->perfil_id == 2
-                        ?['label' => 'Entradas', 'url' => ['/entradas/index']]
+                        ?['label' => 'Registros', 'url' => ['/entradas/index']]
                         :['label' => '', 'url' => ['/site/contact']]
                 ),
 //eventos+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -87,11 +88,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
        
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
+                : '<li>'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => ' btn btn-link logout']
+                        'Cerrar',
+                        ['class' => ' btn btn-link logout  ']
                     )
                     . Html::endForm()
                     . '</li>'
@@ -111,14 +112,46 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     </div>
 </main>
 
-<footer id="footer" class="mt-auto py-3 bg-dark">
-    <div class="container">
-        <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
-        </div>
-    </div>
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    
+  <!-- Grid container -->
+  <div class="container p-4">
+
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="https://www.facebook.com/profile.php?id=100059176121059" role="button"><i class="fa-brands fa-facebook"></i></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="https://twitter.com/uthuejotzingo?fbclid=IwAR1-2LDGJnyjRma_fxw75y1eRTpLlt2UJpZ9rcaaIlklQNv3NtEHM-OtbCc" role="button"><i class="fab fa-twitter"></i></a>
+
+      <!-- Google -->
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="https://www.uth.edu.mx/?fbclid=IwAR1sitiHh7jPpyC5wyCwCNn0Er7duUXN83GlvA6hKO_CS7L8jX5hCAA8P68" role="button"><i class="fab fa-google"></i></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="https://www.instagram.com/ut__huejotzingo/?fbclid=IwAR3975fI8XGUgfmbH9s5-6__rJGi7IJbyQKf0qg9jzfUZ_Aq9ObM2-NhhEQ" role="button"><i class="fab fa-instagram"></i></a>
+
+      <!-- tik tok -->
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i class="fa-brands fa-tiktok"></i></a>
+    </section>
+    <!-- Section: Social media -->
+
+
+
+
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
 </footer>
+<!-- Footer -->
 
 <?php $this->endBody() ?>
 </body>

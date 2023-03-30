@@ -3,9 +3,9 @@ main > .container {
 }
 
 .footer {
-    background-color: #f5f5f5;
+    background-color: #000000;
     font-size: .9em;
-    height: 60px;
+    height: 100%;
 }
 
 .footer > .container {
@@ -61,7 +61,9 @@ a.desc:after {
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255, 255, 255);
+    background-color: rgb(232, 17, 17);
+    
 }
 
 @media(max-width:767px) {
@@ -69,14 +71,14 @@ a.desc:after {
         display:block;
         text-align: left;
         width: 100%;
-        padding: 10px 0;
+        padding: 10px 15;
     }
 }
 
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(0, 0, 0, 0.75);
 }
 
 .nav > li > form > button.logout:focus {
@@ -85,3 +87,5 @@ a.desc:after {
 .nav{
     align-items: center;
 }
+
+

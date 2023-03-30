@@ -9,7 +9,7 @@ use yii\bootstrap5\Html;
 
 
 $this->title = 'Iniciar Sesión';
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style>

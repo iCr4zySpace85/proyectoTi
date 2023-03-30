@@ -50,12 +50,12 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
+            'username' => 'Usuario',
+            'password' => 'Contraseña',
             'accessToken' => 'Access Token',
             'authKey' => 'Auth Key',
-            'perfil_id' => 'Perfil ID',
-            'huellas_idRegis' => 'Huellas Id Regis',
+            'perfil_id' => 'Perfil',
+            'huellas_idRegis' => 'Huella',
         ];
     }
 

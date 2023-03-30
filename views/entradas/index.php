@@ -18,31 +18,70 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Entradas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php // Html::a('Create Entradas', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php 
-    echo !Yii::$app->user->isGuest && Yii::$app->user->identity->perfil_id == 2
-    ? $this->render("_search", ["model" => $searchModel])
-    : ''; ?>
+ 
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <?php
 
-            'horaEntrada',
-            'horaSalida',
-            'usuario_id',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Entradas $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+    if (Yii::$app->user->identity->perfil_id != 2) {
+        echo
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+           // 'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+    
+               /**'usuario_id', */ 
+                [
+                    'attribute' => 'Usuario',
+                    'value' => function($model)
+                    {
+                        return $model->getNombre()->username;
+                    }
+                ],
+                'horaEntrada',
+                'horaSalida',
+               
+                [
+                    'class' => ActionColumn::className(),
+                    'urlCreator' => function ($action, Entradas $model, $key, $index, $column) {
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                     }
+                ],
             ],
-        ],
-    ]); ?>
+        ]);
+    }else{
+        echo
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+    
+               /** */ 'usuario_id',
+                // [
+                //     'attribute' => 'Usuario',
+                //     'value' => function($model)
+                //     {
+                //         return $model->getNombre()->username;
+                //     }
+                // ],
+                'horaEntrada',
+                'horaSalida',
+               
+                [
+                    'class' => ActionColumn::className(),
+                    'urlCreator' => function ($action, Entradas $model, $key, $index, $column) {
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                     }
+                ],
+            ],
+        ]);
+    }
+
+     ?>
 
 
 </div>

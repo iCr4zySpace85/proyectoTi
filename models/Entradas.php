@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use app\models\Usuario;
 use Yii;
 
 /**
@@ -58,5 +58,9 @@ class Entradas extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuario::class, ['id' => 'usuario_id']);
+    }
+    public function getNombre()
+    {
+        return Usuario::find()->where(['id' => $this->usuario_id])->one();
     }
 }
